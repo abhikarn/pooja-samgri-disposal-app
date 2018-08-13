@@ -6,14 +6,14 @@
     <ion-title>Pooja-S Disposal</ion-title>
   </ion-navbar>
 
-  <ion-toolbar color="secondary">
-    <ion-title>Items for Disposal</ion-title>
-  </ion-toolbar>
+
 
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <ion-toolbar color="secondary">
+    <ion-title>Items for Disposal</ion-title>
+  </ion-toolbar>
 
   <ion-list>
     <button *ngFor="let item of disposals" ion-item>{{item.name}}</button>
