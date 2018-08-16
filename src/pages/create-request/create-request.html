@@ -19,7 +19,7 @@
       <ion-col>
         <ion-item>
           <ion-label floating>Item Name</ion-label>
-          <ion-input type="text" class="form-controll" required></ion-input>
+          <ion-input type="text" [(ngModel)]="disposalModel.itemName" class="form-controll" required></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -27,7 +27,7 @@
       <ion-col>
         <ion-item>
           <ion-label floating>Item Description</ion-label>
-          <ion-input type="text" class="form-controll" required></ion-input>
+          <ion-input type="text" [(ngModel)]="disposalModel.itemDescription" class="form-controll" required></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>

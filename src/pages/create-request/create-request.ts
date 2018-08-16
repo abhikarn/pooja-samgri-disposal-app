@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, List } from 'ionic-angular';
+import { PoojaDisposal } from '../../models/poojadisposal.model';
+import { PoojasDisposalApiProvider } from '../../providers/poojas-disposal-api/poojas-disposal-api';
+import { HomePage } from '../home/home';
 
 /**
  * Generated class for the CreateRequestPage page.
@@ -15,15 +18,36 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CreateRequestPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private disposalModel: PoojaDisposal = { itemName: '', itemDescription: '' };
+  private listDisposal: PoojaDisposal[];
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public disposalProvider: PoojasDisposalApiProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CreateRequestPage');
+    // var res = this.disposalProvider.getPoojaDisposals();
+    this.disposalProvider.getDisposalData().subscribe(
+      data => {
+        console.log(data, 'Sumit');
+      }
+    );
+    // var res = this.disposalProvider.getPoojaDisposals().snapshotChanges(['child_added'])
+    //   .subscribe(actions => {
+    //     actions.forEach(action => {
+    //       console.log(action.type);
+    //       console.log(action.key);
+    //       console.log(action.payload.val());
+    //     });
+    //   });
   }
 
   saveRequest() {
-    console.log('save data');
+    // this.disposalProvider.addDisposal(this.disposalModel);
+    console.log(this.disposalModel);
+    this.disposalProvider.addDisposal(this.disposalModel).then(ref => {
+      this.navCtrl.push(HomePage);
+    })
   }
 
 }

@@ -8,7 +8,7 @@ import { PoojasDisposalApiProvider } from '../../providers/poojas-disposal-api/p
 })
 export class HomePage {
 
-  public disposals: any;
+  public disposals: any[];
   constructor(public navCtrl: NavController,
     public poojaapi: PoojasDisposalApiProvider) {
 
@@ -18,7 +18,8 @@ export class HomePage {
 
     this.poojaapi.getDisposalData().subscribe(
       x => {
-        this.disposals = x;
+        // this.disposals = x;
+        console.log(x);
       }
     );
   }
