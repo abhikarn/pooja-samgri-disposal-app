@@ -11,6 +11,7 @@ import { CreateRequestPage } from '../pages/create-request/create-request';
 import { PoojasDisposalApiProvider } from '../providers/poojas-disposal-api/poojas-disposal-api';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { Camera } from '../../node_modules/@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    PoojasDisposalApiProvider
+    PoojasDisposalApiProvider,
+    Camera
   ]
 })
 export class AppModule { }

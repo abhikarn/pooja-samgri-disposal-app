@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { PoojaDisposal } from '../../models/poojadisposal.model';
 import { PoojasDisposalApiProvider } from '../../providers/poojas-disposal-api/poojas-disposal-api';
 
 @Component({
@@ -7,21 +8,26 @@ import { PoojasDisposalApiProvider } from '../../providers/poojas-disposal-api/p
   templateUrl: 'home.html'
 })
 export class HomePage {
-
-  public disposals: any[];
+  disposalList: PoojaDisposal[];
   constructor(public navCtrl: NavController,
     public poojaapi: PoojasDisposalApiProvider) {
-
   }
 
   ionViewDidLoad() {
 
-    this.poojaapi.getDisposalData().subscribe(
-      x => {
-        // this.disposals = x;
-        console.log(x);
-      }
-    );
+    // var x = this.poojaapi.getPoojaDisposals();
+    // x.snapshotChanges().subscribe(item => {
+    //   this.disposalList = [];
+    //   item.forEach(element => {
+    //     var y = element.payload.toJSON();
+    //     y['$key'] = element.key;
+    //     this.disposalList.push(y as PoojaDisposal);
+    //     console.log(this.disposalList);
+    //   });
+    // });
+    this.poojaapi.getPoojaDisposals().subscribe((value) => {
+      this.disposalList = value;
+    });
   }
 
 }

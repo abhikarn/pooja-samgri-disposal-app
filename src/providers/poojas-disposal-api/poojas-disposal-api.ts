@@ -21,8 +21,9 @@ export class PoojasDisposalApiProvider {
   private poojaDisposalRef = this.db.list<PoojaDisposal>('pooja-disposal');
   // private baseUrl = 'https://poojas-disposal-app.firebaseio.com/';
   public disposals: any = {};
+  disposalList: AngularFireList<any>;
   constructor(public http: Http,
-    public db: AngularFireDatabase) {
+    private db: AngularFireDatabase) {
   }
 
 
@@ -35,9 +36,9 @@ export class PoojasDisposalApiProvider {
       );
   }
 
-  getPoojaDisposals(): AngularFireList<PoojaDisposal> {
-    console.log(this.poojaDisposalRef);
-    return this.poojaDisposalRef;
+  getPoojaDisposals(): Observable<any[]> {
+    return this.poojaDisposalRef.valueChanges();
+    // this.disposalList = this.db.list('pooja-disposal');
   }
 
   addDisposal(poojaDisposal: PoojaDisposal) {

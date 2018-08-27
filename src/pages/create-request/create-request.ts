@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, List } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, normalizeURL } from 'ionic-angular';
 import { PoojaDisposal } from '../../models/poojadisposal.model';
 import { PoojasDisposalApiProvider } from '../../providers/poojas-disposal-api/poojas-disposal-api';
 import { HomePage } from '../home/home';
+import { Camera, CameraOptions } from '@ionic-native/camera'
 
 /**
  * Generated class for the CreateRequestPage page.
@@ -19,27 +20,14 @@ import { HomePage } from '../home/home';
 export class CreateRequestPage {
 
   private disposalModel: PoojaDisposal = { itemName: '', itemDescription: '' };
-  private listDisposal: PoojaDisposal[];
+  private imgSrc: any;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public disposalProvider: PoojasDisposalApiProvider) {
+    public disposalProvider: PoojasDisposalApiProvider,
+    public camera: Camera) {
   }
 
   ionViewDidLoad() {
-    // var res = this.disposalProvider.getPoojaDisposals();
-    this.disposalProvider.getDisposalData().subscribe(
-      data => {
-        console.log(data, 'Sumit');
-      }
-    );
-    // var res = this.disposalProvider.getPoojaDisposals().snapshotChanges(['child_added'])
-    //   .subscribe(actions => {
-    //     actions.forEach(action => {
-    //       console.log(action.type);
-    //       console.log(action.key);
-    //       console.log(action.payload.val());
-    //     });
-    //   });
   }
 
   saveRequest() {
@@ -49,5 +37,28 @@ export class CreateRequestPage {
       this.navCtrl.push(HomePage);
     })
   }
+
+  getImage() {
+    const options: CameraOptions = {
+      // quality: 100,
+      destinationType: this.camera.DestinationType.FILE_URI,
+      sourceType: this.camera.PictureSourceType.CAMERA,
+      targetWidth: 30,
+      targetHeight: 30,
+      saveToPhotoAlbum: false,
+      encodingType: this.camera.EncodingType.PNG,
+      correctOrientation: true
+    }
+
+    this.camera.getPicture(options).then((imageData) => {
+      this.disposalModel.disposalImage = imageData;
+      this.disposalModel.disposalImage = normalizeURL(imageData);
+      this.imgSrc = this.disposalModel.disposalImage;
+    }, (err) => {
+      console.log(err);
+      // this.presentToast(err);
+    });
+  }
+
 
 }
