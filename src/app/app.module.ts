@@ -12,6 +12,9 @@ import { PoojasDisposalApiProvider } from '../providers/poojas-disposal-api/pooj
 import { FIREBASE_CONFIG } from './firebase.credentials';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { Camera } from '../../node_modules/@ionic-native/camera';
+import { FcmProvider } from '../providers/fcm/fcm';
+import { Firebase } from '@ionic-native/firebase';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @NgModule({
   declarations: [
@@ -37,7 +40,10 @@ import { Camera } from '../../node_modules/@ionic-native/camera';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     PoojasDisposalApiProvider,
-    Camera
+    Camera,
+    FcmProvider,
+    AngularFirestore,
+    Firebase
   ]
 })
 export class AppModule { }

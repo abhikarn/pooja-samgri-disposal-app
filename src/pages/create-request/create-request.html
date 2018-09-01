@@ -34,10 +34,13 @@
     <ion-row no-padding>
       <ion-col>
         <!-- <ion-item> -->
-        <button full primary (click)="getImage()">
-          <ion-icon name="md-camera"></ion-icon>
+        <button ion-button round (click)="getImage()">
+          <!-- <ion-icon name="md-camera"></ion-icon>
           &nbsp; &nbsp;
-          <h3 class="button-title">Take Disposal Photo</h3>
+          <h3 class="button-title"> -->
+          Take Disposal Photo
+
+          <!-- </h3> -->
         </button>
         <ion-card *ngIf="imgSrc">
           <img [src]="imgSrc">

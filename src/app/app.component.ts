@@ -6,6 +6,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { CreateRequestPage } from '../pages/create-request/create-request';
+import { FcmProvider } from '../providers/fcm/fcm';
+import { ToastController } from 'ionic-angular';
+import { tap } from 'rxjs/operators';
 
 @Component({
   templateUrl: 'app.html'
@@ -17,7 +20,10 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public fcm: FcmProvider,
+    public toastCtrl: ToastController) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -34,6 +40,22 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+      // Get a FCM token
+      this.fcm.getToken()
+
+      // Listen to incoming messages
+      this.fcm.listenToNotifications().pipe(
+        tap(msg => {
+          // show a toast
+          const toast = this.toastCtrl.create({
+            message: msg.body,
+            duration: 3000
+          });
+          toast.present();
+        })
+      )
+        .subscribe()
     });
   }
 
