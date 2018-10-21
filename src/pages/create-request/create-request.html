@@ -1,0 +1,53 @@
+<!--
+  Generated template for the CreateRequestPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Create Request</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="forms-validations-content">
+  <section class="form-section">
+    <ion-row no-padding class="multi-input-row">
+      <ion-col>
+        <ion-item>
+          <ion-label floating>Item Name</ion-label>
+          <ion-input type="text" [(ngModel)]="disposalModel.itemName" class="form-controll" required></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row no-padding class="multi-input-row">
+      <ion-col>
+        <ion-item>
+          <ion-label floating>Item Description</ion-label>
+          <ion-input type="text" [(ngModel)]="disposalModel.itemDescription" class="form-controll" required></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row no-padding>
+      <ion-col>
+        <!-- <ion-item> -->
+        <button ion-button round (click)="getImage()">
+          <!-- <ion-icon name="md-camera"></ion-icon>
+          &nbsp; &nbsp;
+          <h3 class="button-title"> -->
+          Take Disposal Photo
+
+          <!-- </h3> -->
+        </button>
+        <ion-card *ngIf="imgSrc">
+          <img [src]="imgSrc">
+        </ion-card>
+        <!-- </ion-item> -->
+      </ion-col>
+    </ion-row>
+  </section>
+  <button ion-button full (click)="saveRequest()">Save</button>
+</ion-content>

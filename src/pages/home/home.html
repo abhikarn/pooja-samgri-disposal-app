@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Pooja-S Disposal</ion-title>
+  </ion-navbar>
+  <ion-buttons end>
+    <button ion-button (click)="logout()">
+      <ion-icon name="log-out"></ion-icon>
+    </button>
+  </ion-buttons>
+
+
+</ion-header>
+
+<ion-content padding>
+  <ion-toolbar color="secondary">
+    <ion-title>Items for Disposal</ion-title>
+  </ion-toolbar>
+
+  <ion-list>
+    <button *ngFor="let item of disposalList" ion-item>{{item.itemName}}</button>
+  </ion-list>
+
+  <button ion-button secondary menuToggle>Toggle Menu</button>
+</ion-content>

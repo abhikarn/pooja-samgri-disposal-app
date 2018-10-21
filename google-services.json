@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "919904095505",
+    "firebase_url": "https://pooja-disposal-app.firebaseio.com",
+    "project_id": "pooja-disposal-app",
+    "storage_bucket": "pooja-disposal-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:919904095505:android:0aa5f653cc20a0a3",
+        "android_client_info": {
+          "package_name": "io.ionic.poojadisposal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "919904095505-9a3mk75rdeihqkdfkr3mat0b43881tuh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYMx44xRepSAFq36T9aL4zJ2W4Yp0Ah4c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
