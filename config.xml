@@ -81,8 +81,14 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^2.0.0" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
+<<<<<<< HEAD
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="cordova-plugin-fcm-with-dependecy-updated" spec="^2.2.4" />
     <engine name="ios" spec="4.5.5" />
     <engine name="android" spec="7.1.1" />
+=======
+    <engine name="ios" spec="~4.5.5" />
+    <plugin name="cordova-plugin-camera" spec="^4.0.3" />
+    <plugin name="cordova-plugin-fcm-with-dependecy-updated" spec="^2.2.4" />
+>>>>>>> 532091cce91e9ba2e1cb95aa0f0d131ac1712812
 </widget>

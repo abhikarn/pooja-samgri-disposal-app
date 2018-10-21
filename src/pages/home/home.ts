@@ -1,15 +1,23 @@
 import { Component } from '@angular/core';
+<<<<<<< HEAD
 import { NavController, IonicPage } from 'ionic-angular';
 import { PoojaDisposal } from '../../models/poojadisposal.model';
 import { PoojasDisposalApiProvider } from '../../providers/poojas-disposal-api/poojas-disposal-api';
 import { AuthserviceProvider } from '../../providers/authservice/authservice';
 
 @IonicPage()
+=======
+import { NavController } from 'ionic-angular';
+import { PoojaDisposal } from '../../models/poojadisposal.model';
+import { PoojasDisposalApiProvider } from '../../providers/poojas-disposal-api/poojas-disposal-api';
+
+>>>>>>> 532091cce91e9ba2e1cb95aa0f0d131ac1712812
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+<<<<<<< HEAD
 
   disposalList: PoojaDisposal[];
   username = '';
@@ -24,6 +32,11 @@ export class HomePage {
     // this.username = info['pass'];
     // this.email = info['email'];
     console.log(info);
+=======
+  disposalList: PoojaDisposal[];
+  constructor(public navCtrl: NavController,
+    public poojaapi: PoojasDisposalApiProvider) {
+>>>>>>> 532091cce91e9ba2e1cb95aa0f0d131ac1712812
   }
 
   ionViewDidLoad() {
@@ -43,10 +56,13 @@ export class HomePage {
     });
   }
 
+<<<<<<< HEAD
   public logout() {
     this.auth.logout().subscribe(succ => {
       this.nav.setRoot('LoginPage')
     });
   }
 
+=======
+>>>>>>> 532091cce91e9ba2e1cb95aa0f0d131ac1712812
 }
