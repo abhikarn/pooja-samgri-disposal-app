@@ -3,8 +3,6 @@ import { Injectable } from '@angular/core';
 import { User } from '../../models/user';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { Firebase } from '@ionic-native/firebase';
-import { FirebaseAuth } from 'angularfire2';
 
 /*
   Generated class for the AuthserviceProvider provider.
@@ -16,7 +14,7 @@ import { FirebaseAuth } from 'angularfire2';
 export class AuthserviceProvider {
 
   currentUser: User;
-  constructor(private http: Http, private firebase: FirebaseAuth) {
+  constructor(private http: Http) {
     console.log('Hello AuthserviceProvider Provider');
   }
 

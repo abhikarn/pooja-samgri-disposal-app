@@ -2,10 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, normalizeURL } from 'ionic-angular';
 import { PoojaDisposal } from '../../models/poojadisposal.model';
 import { PoojasDisposalApiProvider } from '../../providers/poojas-disposal-api/poojas-disposal-api';
-<<<<<<< HEAD
-=======
-import { HomePage } from '../home/home';
->>>>>>> 532091cce91e9ba2e1cb95aa0f0d131ac1712812
 import { Camera, CameraOptions } from '@ionic-native/camera'
 
 /**
@@ -37,11 +33,7 @@ export class CreateRequestPage {
     // this.disposalProvider.addDisposal(this.disposalModel);
     console.log(this.disposalModel);
     this.disposalProvider.addDisposal(this.disposalModel).then(ref => {
-<<<<<<< HEAD
       this.navCtrl.push('HomePage');
-=======
-      this.navCtrl.push(HomePage);
->>>>>>> 532091cce91e9ba2e1cb95aa0f0d131ac1712812
     })
   }
 
