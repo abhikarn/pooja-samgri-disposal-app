@@ -3,4 +3,7 @@ export interface PoojaDisposal {
     itemName: string;
     itemDescription: string;
     disposalImage?: any;
+    geoCoordinate?: string;
+    LatitudeCoordinate?: string;
+    LongitudeCoordinate?: string;
 }

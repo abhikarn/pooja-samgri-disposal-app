@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { PoojaDisposal } from '../../models/poojadisposal.model';
 import { PoojasDisposalApiProvider } from '../../providers/poojas-disposal-api/poojas-disposal-api';
 import { AuthserviceProvider } from '../../providers/authservice/authservice';
 
+declare var google: any;
 @IonicPage()
 @Component({
   selector: 'page-home',
@@ -14,7 +15,8 @@ export class HomePage {
   disposalList: PoojaDisposal[];
   username = '';
   email = '';
-
+  @ViewChild('map') mapElement: ElementRef;
+  map: any;
   constructor(private navCtrl: NavController
     , private poojaapi: PoojasDisposalApiProvider
     , private nav: NavController
@@ -41,6 +43,17 @@ export class HomePage {
     this.poojaapi.getPoojaDisposals().subscribe((value) => {
       this.disposalList = value;
     });
+    this.initMap();
+  }
+
+  initMap() {
+    let latLng = new google.maps.latLng("54.5267", "9.9167");
+    let mapOptions = {
+      center: latLng,
+      zoom: 5,
+      mapTypeId: google.maps.mapTypeId.ROADMAP
+    }
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
   }
 
   public logout() {

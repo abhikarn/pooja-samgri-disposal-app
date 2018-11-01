@@ -42,12 +42,31 @@
 
           <!-- </h3> -->
         </button>
-        <ion-card *ngIf="imgSrc">
+        <ion-card>
           <img [src]="imgSrc">
         </ion-card>
         <!-- </ion-item> -->
       </ion-col>
     </ion-row>
+    <ion-row no-padding class="multi-input-row">
+      <ion-col>
+        <ion-item>
+          <b>Lat :</b> {{disposalModel.LatitudeCoordinate}}
+          <b>Long :</b> {{disposalModel.LongitudeCoordinate}}
+
+          <!-- <ion-label floating>{{'GeoLocation' }}</ion-label>
+              <ion-input type="text" [(ngModel)]="school.geoCoordinate" required></ion-input> -->
+          <button item-right clear (click)="getLocation()" disabled="{{buttonDisabled}}">
+            <ion-icon tappable name="navigate" item-right></ion-icon>
+          </button>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row>
+      <ion-col>
+        <button ion-button round (click)="getCurrentLocation()"> Get Current Location</button>
+      </ion-col>
+    </ion-row> -->
   </section>
   <button ion-button full (click)="saveRequest()">Save</button>
 </ion-content>

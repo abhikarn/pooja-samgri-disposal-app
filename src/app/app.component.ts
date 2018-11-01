@@ -3,7 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { FcmProvider } from '../providers/fcm/fcm';
+// import { FcmProvider } from '../providers/fcm/fcm';
 import { ToastController } from 'ionic-angular';
 
 @Component({
@@ -18,7 +18,7 @@ export class MyApp {
 
   constructor(public platform: Platform, public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public fcm: FcmProvider,
+    // public fcm: FcmProvider,
     public toastCtrl: ToastController) {
     this.initializeApp();
 
