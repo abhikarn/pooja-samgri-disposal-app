@@ -41,34 +41,34 @@ export class RegisterPage {
     //   error => {
     //     this.showPopup("Error", error);
     //   });
-    // console.log('inside register');
-    // console.log(this.registerCredentials);
-    // // if (!this.registerCredentials) {
-    //   this.auth.register(this.registerCredentials)
-    //     .then((res) => {
-    //       console.log(res);
-    //       console.log('user has been created');
-
-    //       this.createSuccess = true;
-    //       this.showPopup("Success", "Account created.");
-    //       this.nav.setRoot('LoginPage');
-    //     })
-    //     .catch((err) => console.log('error: ' + err));
-    // }
-    const loading = await this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    loading.present();
-
+    console.log('inside register');
+    console.log(this.registerCredentials);
+    // if (!this.registerCredentials) {
     this.auth.register(this.registerCredentials)
-      .then(_ => {
-        loading.dismiss();
-      }, err => {
-        loading.dismiss().then(() => {
-          this.showPopup('Error', err);
-        })
-      });
+      .then((res) => {
+        console.log(res);
+        console.log('user has been created');
+
+        this.createSuccess = true;
+        this.showPopup("Success", "Account created.");
+        this.nav.setRoot('LoginPage');
+      })
+      .catch((err) => console.log('error: ' + err));
   }
+  // const loading = await this.loadingCtrl.create({
+  //   content: 'Please wait...'
+  // });
+  // loading.present();
+
+  // this.auth.register(this.registerCredentials)
+  //   .then(_ => {
+  //     loading.dismiss();
+  //   }, err => {
+  //     loading.dismiss().then(() => {
+  //       this.showPopup('Error', err);
+  //     })
+  //   });
+  // }
 
   showPopup(title, text) {
     let alert = this.alertCtrl.create({

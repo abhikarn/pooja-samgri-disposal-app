@@ -19,7 +19,7 @@
       <ion-col>
         <ion-item>
           <ion-label floating>Item Name</ion-label>
-          <ion-input type="text" [(ngModel)]="disposalModel.itemName" class="form-controll" required></ion-input>
+          <ion-input type="text" [(ngModel)]="disposalModel.itemName" class="form-controll" required [disabled]="isAdmin"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
@@ -27,14 +27,14 @@
       <ion-col>
         <ion-item>
           <ion-label floating>Item Description</ion-label>
-          <ion-input type="text" [(ngModel)]="disposalModel.itemDescription" class="form-controll" required></ion-input>
+          <ion-input type="text" [(ngModel)]="disposalModel.itemDescription" class="form-controll" required [disabled]="isAdmin"></ion-input>
         </ion-item>
       </ion-col>
     </ion-row>
     <ion-row no-padding>
       <ion-col>
         <!-- <ion-item> -->
-        <button ion-button round (click)="getImage()">
+        <button ion-button round (click)="getImage()" hidden="isAdmin">
           <!-- <ion-icon name="md-camera"></ion-icon>
           &nbsp; &nbsp;
           <h3 class="button-title"> -->
@@ -56,7 +56,7 @@
 
           <!-- <ion-label floating>{{'GeoLocation' }}</ion-label>
               <ion-input type="text" [(ngModel)]="school.geoCoordinate" required></ion-input> -->
-          <button item-right clear (click)="getLocation()" disabled="{{buttonDisabled}}">
+          <button item-right clear (click)="getLocation()" [disabled]="isAdmin">
             <ion-icon tappable name="navigate" item-right></ion-icon>
           </button>
         </ion-item>
@@ -68,5 +68,7 @@
       </ion-col>
     </ion-row> -->
   </section>
-  <button ion-button full (click)="saveRequest()">Save</button>
+  <button ion-button full (click)="saveRequest()" *ngIf="!isAdmin">Save</button>
+  <button ion-button full (click)="navigate()" *ngIf="isAdmin">Navigate</button>
+  <button ion-button full (click)="completeRequest()" *ngIf="isAdmin">Complete Request</button>
 </ion-content>

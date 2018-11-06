@@ -19,12 +19,23 @@
     <ion-title>Items for Disposal</ion-title>
   </ion-toolbar>
 
-  <ion-list>
+  <!-- <ion-list>
     <button *ngFor="let item of disposalList" ion-item>{{item.itemName}}</button>
+  </ion-list> -->
+
+  <ion-list>
+    <ion-item *ngFor="let item of disposalList">
+      <ion-thumbnail item-start>
+        <img src="img/thumbnail-totoro.png">
+      </ion-thumbnail>
+      <h2>{{item.itemName}}</h2>
+      <p>{{item.itemDescription}}</p>
+      <button ion-button clear item-end (click)="goToCreate($event,item)">View</button>
+    </ion-item>
   </ion-list>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+  <!-- <button ion-button secondary menuToggle>Toggle Menu</button> -->
 
-  <div #map id="map"></div>
+  <!-- <div #map id="map"></div> -->
 
 </ion-content>

@@ -6,4 +6,5 @@ export interface PoojaDisposal {
     geoCoordinate?: string;
     LatitudeCoordinate?: string;
     LongitudeCoordinate?: string;
+    isComplete: boolean;
 }

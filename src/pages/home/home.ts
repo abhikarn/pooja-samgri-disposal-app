@@ -3,6 +3,8 @@ import { NavController, IonicPage } from 'ionic-angular';
 import { PoojaDisposal } from '../../models/poojadisposal.model';
 import { PoojasDisposalApiProvider } from '../../providers/poojas-disposal-api/poojas-disposal-api';
 import { AuthserviceProvider } from '../../providers/authservice/authservice';
+import { Storage } from '@ionic/storage';
+import { GlobalProvider } from '../../providers/global/global';
 
 declare var google: any;
 @IonicPage()
@@ -15,11 +17,12 @@ export class HomePage {
   disposalList: PoojaDisposal[];
   username = '';
   email = '';
-  @ViewChild('map') mapElement: ElementRef;
-  map: any;
+  // @ViewChild('map') mapElement: ElementRef;
+  // map: any;
   constructor(private navCtrl: NavController
     , private poojaapi: PoojasDisposalApiProvider
     , private nav: NavController
+    , private global: GlobalProvider
     , private auth: AuthserviceProvider) {
 
     let info = this.auth.getUserInfo();
@@ -42,18 +45,24 @@ export class HomePage {
     // });
     this.poojaapi.getPoojaDisposals().subscribe((value) => {
       this.disposalList = value;
+      console.log(value);
     });
-    this.initMap();
+    // this.initMap();
   }
 
-  initMap() {
-    let latLng = new google.maps.latLng("54.5267", "9.9167");
-    let mapOptions = {
-      center: latLng,
-      zoom: 5,
-      mapTypeId: google.maps.mapTypeId.ROADMAP
-    }
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+  // initMap() {
+  //   let latLng = new google.maps.latLng("54.5267", "9.9167");
+  //   let mapOptions = {
+  //     center: latLng,
+  //     zoom: 5,
+  //     mapTypeId: google.maps.mapTypeId.ROADMAP
+  //   }
+  //   this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+  // }
+
+  public goToCreate($event, item: PoojaDisposal) {
+    console.log(item);
+    this.nav.push('CreateRequestPage', item)
   }
 
   public logout() {

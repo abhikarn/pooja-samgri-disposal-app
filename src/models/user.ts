@@ -1,5 +1,6 @@
-export interface User {
+export interface appUser {
     // key?: string;
-    name: string;
-    email: string;
+    name?: string;
+    email?: string;
+    isAdmin: boolean;
 }

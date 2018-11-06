@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database'
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database'
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/observable';
 import { PoojaDisposal } from '../../models/poojadisposal.model';
@@ -36,8 +36,16 @@ export class PoojasDisposalApiProvider {
       );
   }
 
-  getPoojaDisposals(): Observable<any[]> {
-    return this.poojaDisposalRef.valueChanges();
+  getPoojaDisposals() {
+    return this.poojaDisposalRef.snapshotChanges().map(
+      changes => {
+        return changes.map(
+          a => {
+            const data = a.payload.val() as PoojaDisposal;
+            data.key = a.payload.key;
+            return data;
+          });
+      });
     // this.disposalList = this.db.list('pooja-disposal');
   }
 

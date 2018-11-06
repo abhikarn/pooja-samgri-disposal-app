@@ -1,6 +1,6 @@
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { User } from '../../models/user';
+import { appUser } from '../../models/user';
 import 'rxjs/add/operator/map';
 import { AngularFireAuth } from '@angular/fire/auth';
 import firebase from 'firebase/app';
@@ -17,7 +17,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 @Injectable()
 export class AuthserviceProvider {
 
-  currentUser: User;
+  currentUser: appUser;
   constructor(private http: Http, private firebase: AngularFireAuth
     , private afs: AngularFirestore) {
     console.log('Hello AuthserviceProvider Provider');
@@ -40,28 +40,28 @@ export class AuthserviceProvider {
     return this.firebase.auth.signInWithEmailAndPassword(credentials.email, credentials.password);
   }
 
-  // public register(credentials) {
-  //   // if (credentials.email === null || credentials.password === null) {
-  //   //   return Observable.throw("Please insert credentials");
-  //   // } else {
-  //   //   // At this point store the credentials to your backend!
-  //   //   return Observable.create(observer => {
-  //   //     observer.next(true);
-  //   //     observer.complete();
-  //   //   });
-  //   //   // return firebase.auth().createUserWithEmailAndPassword(credentials.email, credentials.password).then(res => {
-  //   //   //   console.log(res);
-  //   //   // })
-  //   // }
-  //   return this.firebase.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
-  // }
-
-  async register(credentials) {
-    const data = await this.firebase.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
-    return this.afs.doc(`users/${data.user.uid}`).set({ email: credentials.email, display_name: credentials.email });
+  public register(credentials) {
+    // if (credentials.email === null || credentials.password === null) {
+    //   return Observable.throw("Please insert credentials");
+    // } else {
+    //   // At this point store the credentials to your backend!
+    //   return Observable.create(observer => {
+    //     observer.next(true);
+    //     observer.complete();
+    //   });
+    //   // return firebase.auth().createUserWithEmailAndPassword(credentials.email, credentials.password).then(res => {
+    //   //   console.log(res);
+    //   // })
+    // }
+    return this.firebase.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
   }
 
-  public getUserInfo(): User {
+  // async register(credentials) {
+  //   const data = await this.firebase.auth.createUserWithEmailAndPassword(credentials.email, credentials.password);
+  //   return this.afs.doc(`users/${data.user.uid}`).set({ email: credentials.email, display_name: credentials.email });
+  // }
+
+  public getUserInfo(): appUser {
     return this.currentUser;
   }
 
