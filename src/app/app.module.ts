@@ -10,7 +10,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { PoojasDisposalApiProvider } from '../providers/poojas-disposal-api/poojas-disposal-api';
 import { FIREBASE_CONFIG } from './firebase.credentials';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
-import { Camera } from '../../node_modules/@ionic-native/camera';
+import { Camera } from '@ionic-native/camera';
 // import { FcmProvider } from '../providers/fcm/fcm';
 import { Firebase } from '@ionic-native/firebase';
 import { AngularFireModule } from '@angular/fire';

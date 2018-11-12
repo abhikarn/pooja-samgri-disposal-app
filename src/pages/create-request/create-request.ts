@@ -8,6 +8,7 @@ import { appUser } from '../../models/user';
 import { Storage } from '@ionic/storage';
 import { GlobalProvider } from '../../providers/global/global';
 import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
+import { DomSanitizer } from '@angular/platform-browser';
 /**
  * Generated class for the CreateRequestPage page.
  *
@@ -34,6 +35,12 @@ export class CreateRequestPage {
     private geolocation: Geolocation) {
 
     this.disposalModel = navParams.data;
+    // if (!this.disposalModel.disposalImage) {
+    // let safeImageData = this.sanitizer.bypassSecurityTrustUrl(this.disposalModel.disposalImage);
+    // let base64Image = 'data:image/jpeg;base64,' + this.sanitizer.bypassSecurityTrustUrl(this.disposalModel.disposalImage);
+    // console.log('Sumit Image');
+    this.imgSrc = this.disposalModel.disposalImage;
+    // }
 
   }
 
@@ -73,21 +80,19 @@ export class CreateRequestPage {
   }
 
   navigate() {
-    this.launchnavigator.navigate([12.910456799999999, 77.60508759999999], {
-      start: "12.910456799999999, 77.60508759999999"
-    });
+    let options: number[] = [parseInt(this.disposalModel.LatitudeCoordinate), parseInt(this.disposalModel.LongitudeCoordinate)];
+    this.launchnavigator.navigate(options);
   }
 
   getImage() {
     const options: CameraOptions = {
       // quality: 100,
-      destinationType: this.camera.DestinationType.FILE_URI,
+      destinationType: this.camera.DestinationType.DATA_URL,
       sourceType: this.camera.PictureSourceType.CAMERA,
-      targetWidth: 30,
-      targetHeight: 30,
       saveToPhotoAlbum: false,
-      encodingType: this.camera.EncodingType.PNG,
-      correctOrientation: true
+      encodingType: this.camera.EncodingType.JPEG,
+      correctOrientation: true,
+      quality: 100
     }
 
     // this.camera.getPicture(options).then((imageData) => {
@@ -100,8 +105,9 @@ export class CreateRequestPage {
     // });
 
     this.camera.getPicture(options).then((imageData) => {
-      let base64Image = 'data:image/jpeg;base64,' + imageData;
+      // let safeImageData = this.sanitizer.bypassSecurityTrustUrl(imageData);
       this.disposalModel.disposalImage = imageData;
+      let base64Image = 'data:image/jpeg;base64,' + imageData;
       this.imgSrc = base64Image;
     }, (err) => {
       // this.presentToast("Error while selecting image");

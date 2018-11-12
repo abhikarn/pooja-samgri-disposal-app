@@ -26,7 +26,7 @@
   <ion-list>
     <ion-item *ngFor="let item of disposalList">
       <ion-thumbnail item-start>
-        <img src="img/thumbnail-totoro.png">
+        <img [src]="item.disposalImage">
       </ion-thumbnail>
       <h2>{{item.itemName}}</h2>
       <p>{{item.itemDescription}}</p>

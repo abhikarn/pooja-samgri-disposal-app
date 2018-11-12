@@ -45,6 +45,9 @@ export class HomePage {
     // });
     this.poojaapi.getPoojaDisposals().subscribe((value) => {
       this.disposalList = value;
+      this.disposalList.forEach(item => {
+        item.disposalImage = 'data:image/jpeg;base64,' + item.disposalImage;
+      })
       console.log(value);
     });
     // this.initMap();

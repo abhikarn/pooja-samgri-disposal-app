@@ -34,7 +34,7 @@
     <ion-row no-padding>
       <ion-col>
         <!-- <ion-item> -->
-        <button ion-button round (click)="getImage()" hidden="isAdmin">
+        <button ion-button round (click)="getImage()" *ngIf="!isAdmin">
           <!-- <ion-icon name="md-camera"></ion-icon>
           &nbsp; &nbsp;
           <h3 class="button-title"> -->
