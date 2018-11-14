@@ -57,12 +57,12 @@ export class LoginPage {
     //   });
     // if (!this.registerCredentials) {
     console.log(this.registerCredentials);
+    this.global.userEmailProvider = this.registerCredentials.email;
     this.auth.login(this.registerCredentials)
       .then((res) => {
         console.log(res.user.email + ' Sumit');
 
         if (res) {
-          this.global.userEmailProvider = res.user.email;
           this.global.userNameProvider = res.user.displayName;
           if (adminEmail === res.user.email) {
             this.global.isAdminProvider = true;

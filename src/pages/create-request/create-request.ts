@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, normalizeURL } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, normalizeURL, AlertController } from 'ionic-angular';
 import { PoojaDisposal } from '../../models/poojadisposal.model';
 import { PoojasDisposalApiProvider } from '../../providers/poojas-disposal-api/poojas-disposal-api';
 import { Camera, CameraOptions } from '@ionic-native/camera'
@@ -23,18 +23,22 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class CreateRequestPage {
 
-  private disposalModel: PoojaDisposal = { itemName: '', itemDescription: '', isComplete: false };
+  private disposalModel: PoojaDisposal = {
+    itemName: '', itemDescription: '', isComplete: false,
+    createdByUser: this.global.userEmailProvider, createdDate: new Date().toDateString()
+  };
   private imgSrc: any;
   isAdmin: boolean;
   constructor(private navCtrl: NavController,
     private navParams: NavParams,
+    private alertCtrl: AlertController,
     private disposalProvider: PoojasDisposalApiProvider,
     private camera: Camera,
     private launchnavigator: LaunchNavigator,
     private global: GlobalProvider,
     private geolocation: Geolocation) {
 
-    this.disposalModel = navParams.data;
+    this.disposalModel = this.navParams.data;
     // if (!this.disposalModel.disposalImage) {
     // let safeImageData = this.sanitizer.bypassSecurityTrustUrl(this.disposalModel.disposalImage);
     // let base64Image = 'data:image/jpeg;base64,' + this.sanitizer.bypassSecurityTrustUrl(this.disposalModel.disposalImage);
@@ -127,6 +131,29 @@ export class CreateRequestPage {
   // getCurrentLocation() {
   //   this.navCtrl.push('CurrentLocationPage');
   // }
+
+  completeConfirm() {
+    let alert = this.alertCtrl.create({
+      title: 'Confirm',
+      message: 'Once Completed cannot be reverted..!',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Complete',
+          handler: () => {
+            this.completeRequest();
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
 
 
 }
